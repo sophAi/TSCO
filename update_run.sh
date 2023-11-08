@@ -6,7 +6,9 @@
 # Creation Time : 20180427 14:37:31
 # ==============================================================
 #git_repo=http://140.109.113.226:30000/jlkiams/TSCO.git
-git_repo=git@github.com:sophAi/TSCO.git
+#git_url=ssh://gitlab_jlkiams:30001/jlkiams/TSCO.git
+git_repo=git@github.com:sophAi/TSCO.git  # for git clone
+git_url=git@github:sophAi/TSCO.git  # from $TSCO_dir/.git/config
 revert_run=0
 TSCO_dir=~/git_projects/jlkiams/TSCO
 matplotlib_dir=~/.config/matplotlib
@@ -112,15 +114,22 @@ if [[ ! -d "$TSCO_dir" ]]; then
 fi
 
 if [[ -d "$TSCO_dir" ]]; then
-    cd $TSCO_dir
-    cp run.py $matplotlib_dir/run.previous
-    cp run_jl.py $matplotlib_dir/run_jl.previous
-    #git pull
-    git fetch
-    git reset --hard origin/master
-    cp run.py $matplotlib_dir/run.latest
-    cp run_jl.py $matplotlib_dir/run_jl.latest
-    ./$run_name --init
+    check_url=`grep url $TSCO/.git/config | awk -F' ' '{print $NF}'`
+    if [[ $check_url != "$git_url" ]]; then
+        cd $TSCO_dir
+        cd ../
+        rm -rf $TSCO_dir
+        git clone $git_repo
+    else
+        cp run.py $matplotlib_dir/run.previous
+        cp run_jl.py $matplotlib_dir/run_jl.previous
+        #git pull
+        git fetch
+        git reset --hard origin/master
+        cp run.py $matplotlib_dir/run.latest
+        cp run_jl.py $matplotlib_dir/run_jl.latest
+        ./$run_name --init
+    fi
 fi
 
 echo -e "\nPlease \033[1;31mlog in again \033[0mor '\033[1;32msource ~/.bashrc\033[0m'\n"
