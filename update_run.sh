@@ -5,6 +5,8 @@
 # ==============================================================
 # Creation Time : 20180427 14:37:31
 # ==============================================================
+#git_repo=http://140.109.113.226:30000/jlkiams/TSCO.git
+git_repo=git@github.com:sophAi/TSCO.git
 revert_run=0
 TSCO_dir=~/git_projects/jlkiams/TSCO
 matplotlib_dir=~/.config/matplotlib
@@ -90,7 +92,7 @@ if [[ ! -d "$TSCO_dir" ]]; then
     mkdir -p $TSCO_dir
     cd $TSCO_dir
     cd ../
-    git clone http://140.109.113.226:30000/jlkiams/TSCO.git
+    git clone $git_repo
     mkdir -p $matplotlib_dir > /dev/null
     rsync --progress -hauv $TSCO_dir/.config/matplotlib/ $matplotlib_dir > /dev/null
     mkdir -p ~/bin
