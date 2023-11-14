@@ -17,11 +17,11 @@ Requirements
 Installation
 ------------
 
-Either execute `update_run.sh` to install or use the following steps:
+Either execute `update_run.sh` in ~/ to install or use the following steps:
 
 1. `mkdir -p ~/git_projects/jlkiams/; mkdir -p ~/bin`
 
-2. `cd ~/git_projects/jlkiams; git clone http://140.109.113.226:30000/jlkiams/TSCO.git`
+2. `cd ~/git_projects/jlkiams; git clone https://github.com/sophAi/TSCO.git`
 
 3. `cd ~/bin`
 
@@ -42,5 +42,3 @@ Usage
 * `run.py -p *.json` to perform tasks listed in the *.json file.
 
 * `run.py -t *.json` to create template json file.
-
-* The json files can be found in [sugar_tools](http://140.109.113.226:30000/jlkiams/sugar_tools)
