@@ -8,15 +8,15 @@
 # ==============================================================
 from importlib import util
 from json import loads
-from os import system, walk, environ
+from os import system, walk
 from os.path import abspath, expanduser, isdir, isfile
 from sys import argv, path, exit
 
 preference_file = None
 preference = {"key": []}
 default_key = [
-    "https://drive.google.com/uc?export=download&id=1TKFTSNCmDRqrHpWgecn2V8lgCc1BWwue",
-    "d56341ebbd8a91249cb341fb573d5dc58ef5287e.sha1"
+    "https://drive.google.com/uc?export=download&id=1W0Poqp92_L_yOMeyK8wT1yF11zCNh6qy",
+    "ab53d7f924639f86040611b45526c6c670c528c2.sha1"
 ]
 def_tmp_path = abspath(expanduser("~/.cache/enigma"))
 if len(argv) == 2 and argv[1] not in ("-h", "--help", "-c", "--clean", "--init"):
@@ -32,8 +32,28 @@ else:
             preference_file = abspath(expanduser(argv[arg_id + 1]))
 if preference_file:
     if isfile(preference_file):
-        with open(preference_file, "r") as pref_obj:
-            preference = loads(pref_obj.read())
+        file_ext = preference_file.split(".")[-1].lower()
+        if file_ext == "json":
+            json_pref_file = preference_file
+        elif file_ext in ("yml", "yaml"):
+            try:
+                import yaml
+                with open(preference_file, "r") as yaml_obj:
+                    yaml_pref = yaml.safe_load(yaml_obj)
+                if "JSON" in yaml_pref:
+                    json_file_key = "JSON"
+                elif "json" in yaml_pref:
+                    json_file_key = "json"
+                else:
+                    print("\033[1;31mJSON file is missing\033[0m")
+                    exit(1)
+                json_pref_file = yaml_pref[json_file_key]
+            except Exception as err:
+                print("\033[1;31mCannot parse {}:\n{}\033[0m"
+                      .format(preference_file, err))
+                exit(1)
+        with open(json_pref_file, "r") as json_obj:
+            preference = loads(json_obj.read())
     else:
         preference = {"key": None}
 try:
