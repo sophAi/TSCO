@@ -15,8 +15,8 @@ from sys import argv, path, exit
 preference_file = None
 preference = {"key": []}
 default_key = [
-    "https://drive.google.com/uc?export=download&id=18diX5cQ6GoYTU2dlmgGdIiPWXL8MlQzL",
-    "dcbaf9fa4b611f1d2800f5d1210494e877a9b2c1.sha1"
+    "https://drive.google.com/uc?export=download&id=1DaENWoZ75-sxC1QZd1zaTggiJQn1i6SW",
+    "dcd2184f8914ac7e525db7f35476ea66ffef9ee5.sha1"
 ]
 def_tmp_path = abspath(expanduser("~/.cache/enigma"))
 if len(argv) == 2 and argv[1] not in ("-h", "--help", "-c", "--clean", "--init"):
@@ -138,7 +138,8 @@ else:
                         source_size=len(py_code),
                     )
             except Exception as err:
-                print("\033[1;31mSomething wrong in \033[1;34m{}\033[0m: \033[1;36m{}\033[0m".format(py_name, err))
+                print("\033[1;31mCannot process \033[1;34m{}\033[0m: \033[1;36m{}\033[0m"
+                      .format(py_name, err))
             else:
                 _bootstrap_external._write_atomic(
                     "{}/{}.pyc".format(key_path, py_name),
