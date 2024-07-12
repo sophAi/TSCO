@@ -16,7 +16,7 @@ preference_file = None
 preference = {"key": []}
 default_key = [
     "https://drive.google.com/uc?export=download&id=1Hpb16kGpHY0HbtYSpgQvaRStGqFObM4Q",
-    "6ffc8c8c65297dba43aab5fd9860eb138eea720d.db"
+    "6ffc8c8c65297dba43aab5fd9860eb138eea720d.sha1.db"
 ]
 def_tmp_path = abspath(expanduser("~/.cache/enigma"))
 if len(argv) == 2 and argv[1] not in ("-h", "--help", "-c", "--clean", "--init"):
@@ -62,7 +62,7 @@ try:
     elif default_key:
         key_list = default_key
     key_url, key_str = key_list
-    key, alg = key_str.split(".")
+    key, alg, db_ext = key_str.split(".")
 except Exception as err:
     print("Using default environment...")
     if isdir(def_tmp_path):
