@@ -16,7 +16,7 @@ preference_file = None
 preference = {"key": []}
 default_key = [
     "https://drive.usercontent.google.com/download?id=&export=download&confirm=t",
-    "1fff5c57efb9f8a4d7c60df39c43ee6f26ac8274.sha1"
+    "c88aea620851f878b801ca5756a211352c37fa56.sha1"
 ]
 def_tmp_path = abspath(expanduser("~/.cache/enigma"))
 if len(argv) == 2 and argv[1] not in ("-h", "--help", "-c", "--clean", "--init"):
