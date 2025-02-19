@@ -42,7 +42,7 @@ case $1 in
         echo -e "\nUsage:"
         echo -e "\033[1;32m$prog \033[1;31m[options]\033[0m"
         echo -e "\nOptions:"
-        awk '/#start \$opt_help/,/#end \$opt_help/' $0 | grep -v "(\|reset_expansion\|awk\|Example" | grep ")" -A 1 --no-group-separator | awk '{gsub(/\\033/,""); gsub(/    /,"\033[1;31m"); gsub(/\|/,"\033[1;33m, \033[1;31m"); gsub(/""/,"no option"); gsub(/echo -e -n "/,"\t\033[0m"); gsub(/echo -n -e "/,"\t\033[0m"); gsub(/echo -e "/,"\t\033[0m"); gsub(/echo -n "/,"\t\033[0m");gsub(/.$/,""); print}'
+        awk '/#start \$opt_help/,/#end \$opt_help/' $0 | grep -v "(\|awk\|Example\|reset_expansion" | grep ")" -A 1 --no-group-separator | awk '{gsub(/\\033/,""); gsub(/    /,"\033[1;31m"); gsub(/\|/,"\033[1;33m, \033[1;31m"); gsub(/""/,"no option"); gsub(/echo -e -n "/,"\t\033[0m"); gsub(/echo -n -e "/,"\t\033[0m"); gsub(/echo -e "/,"\t\033[0m"); gsub(/echo -n "/,"\t\033[0m");gsub(/.$/,""); print}'
         echo -e "\033[0m\nExamples:"
         echo -e "\033[1;32m$prog \033[1;31m-r \033[0m(revert to previous version if it exists)"
         echo -e "\033[1;32m$prog \033[1;31m-i \033[1;34m~/git_projects/jlkiams/TSCO\033[0m"
