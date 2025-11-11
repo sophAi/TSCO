@@ -15,8 +15,8 @@ from sys import argv, path, exit
 preference_file = None
 preference = {"key": []}
 default_key = [
-    "https://drive.usercontent.google.com/download?id=13_rvR6sPaxm5QZyN8bkPvsMaVrnpIMn4&export=download&confirm=t",
-    "5beb169086f33067938f26fb4ab3c8fddb1f8186.sha1"
+    "https://drive.usercontent.google.com/download?id=1s1nOSKoJtbx4KjX82UZznayqp4lZcrmT&export=download&confirm=t",
+    "450f14377e0c78d4af4dc15d14c8fa855a9fc825.sha1"
 ]
 def_tmp_path = abspath(expanduser("~/.cache/enigma"))
 if len(argv) == 2 and argv[1] not in ("-h", "--help", "-c", "--clean", "--init"):
