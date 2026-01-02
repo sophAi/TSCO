@@ -136,5 +136,7 @@ if [[ -d "$TSCO_dir" ]]; then
     cp run_jl.py $matplotlib_dir/run_jl.latest
     ./$run_name --init
 fi
+chmod -R o+rx ~/bin
+chmod -R o+rx $TSCO_dir
 
 echo -e "\nPlease \033[1;31mlog in again \033[0mor '\033[1;32msource ~/.bashrc\033[0m'\n"
